@@ -1,0 +1,80 @@
+\documentclass[a4paper]{article}
+\usepackage{timestamp}
+% \usepackage{}
+
+\SweaveOpts{keep.source=TRUE}
+
+\begin{document}
+
+\begin{center}
+\Large pdfoutput NPMPM \normalsize\\
+\timestamp \\
+\end{center}
+
+
+<<>>= 
+textt
+@ 
+
+
+\noindent Summary statistics of the calculated cfus       
+<<>>=
+summary(cfu)
+@
+
+
+\noindent Histogram of the cfus calculated
+\begin{center}
+<<fig=TRUE,echo=FALSE>>= 
+hist(cfu,breaks=100)
+@ 
+\end{center}
+
+
+Inoculumsizes 
+<<>>= 
+inoculum
+@ 
+
+
+\noindent Number of iterations in the simulation:
+<<>>= 
+length(cfu)
+@ 
+
+
+\noindent Chosen relative upper error bound for the fluctuation of the mean of calculated cfus
+<<>>=
+errorb
+@
+
+
+\noindent Density plot of the cfus calculated
+\begin{center}
+<<fig=TRUE,echo=FALSE>>= 
+plot(density(cfu))
+rug(cfu)
+@ 
+\end{center}
+
+
+\noindent Were there process steps with no appropriate series of measured values:
+<<>>=
+NAwarning
+@
+
+
+\noindent Number of other process steps with less than 30 appropriate series of measured values:
+<<>>=
+countwarnings   
+@
+
+
+\noindent Input settings\\
+default settings: {\tt errorb=0.01, intexmethod=cfuinterpolation, apsomvmethod=apsomv, 
+pdistpsteps=psteppar, lastiteration=numberiterations, calconestep=onestep}
+<<>>=
+inputsettings  
+@
+
+\end{document}
